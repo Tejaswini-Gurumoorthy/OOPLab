@@ -1,33 +1,45 @@
 import java.util.Scanner;
-class MarkOutOfBoundException extends Exception
+import java.util.*;
+class FloatException extends Exception
 {
-    public MarkOutOfBoundException(String s)
+    public FloatException(String s)
     {
         super(s);
     }
 }
-
-public class Student2 {
+public class Input_Exception {
     public static void main(String args[])
     {
         Scanner sc= new Scanner(System.in);
-        int marks;
-        try
+        int sum=0;
+        float num;
+        while (true)
         {
-            System.out.println("Enter the marks : ");
-            marks = sc.nextInt();
-            if (marks > 100)
-            {
-                throw new MarkOutOfBoundException("Marks cannot exceed 100");
+            try {
+                System.out.println("Enter number : ");
+                num = sc.nextFloat();
 
+                int n = (int) num;
+                if (num - n != 0) {
+                    throw new FloatException("Float numbers invalid !!");
+                }
+
+                if (num == -1) {
+                    System.out.println("Sum is : "+ sum);
+                    break;
+
+                }
+                sum += num;
             }
-            System.out.println("Mark scored : "+marks);
+            catch (FloatException f)
+            {
+                System.out.println("Error : "+f.getMessage());
+            }
+
+
+
+
 
         }
-        catch (MarkOutOfBoundException e)
-        {
-            System.out.println("Error : "+e.getMessage());
-        }
-
     }
 }
